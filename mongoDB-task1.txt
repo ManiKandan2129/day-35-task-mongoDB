@@ -1,0 +1,29 @@
+MongoDB task 1:
+
+answers:
+
+1) db.collection.find();
+
+2) db.collection.find({product_price:{$gte:400,$lte:800});
+
+3) db.collection.find({product_price:{$not:{$gte:400,$lte:600}});
+
+4) db.collection.find({product_price:{$gte:500}}).limit(4);
+
+5) db.collection.find({},{product_name:1,product_material:1,_id:0});
+
+6) db.collection.find({id:10},{_id:0});
+
+7) db.collection.find({},{product_name:1,product_material:1,_id:0});
+
+8) db.collection.find({product_material:"soft"});
+
+9) db.collection.find({$and:[{product_color:"indigo"},{product_price:492.00}]});
+
+10) db.collection.aggregate([{$group:{_id:"$product_price",
+    count:{$sum:1},
+    doc_id:{$first:"$_id"}}},
+    {$match:{count:{$gt:1}}}]
+    ).forEach((val)=>{
+    db.collection.deleteMany({_id:val.doc_id})
+    })
